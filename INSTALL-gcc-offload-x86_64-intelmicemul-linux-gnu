@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e -x
+
+cd "$T"/build-gcc-offload-x86_64-intelmicemul-linux-gnu/
+
+rm -f .have-install
+(make DESTDIR="$T"/install/offload-x86_64-intelmicemul-linux-gnu "$@" install &&
+touch .have-install) 2>&1 | tee -a log_install
+test -f .have-install

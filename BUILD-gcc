@@ -10,6 +10,7 @@ if ! test -f .have-configure; then
   ("$T"/source-gcc/configure \
     --prefix= \
     --enable-languages=all,ada,go \
+    --enable-offload-targets=x86_64-intelmicemul-linux-gnu="$T"/install/offload-x86_64-intelmicemul-linux-gnu \
     CC=gcc-4.6 \
     CXX=g++-4.6 &&
   touch .have-configure) 2>&1 | tee -a log_build

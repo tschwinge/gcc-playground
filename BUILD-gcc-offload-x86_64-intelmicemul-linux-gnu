@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e -x
+
+mkdir -p "$T"/build-gcc-offload-x86_64-intelmicemul-linux-gnu
+cd "$T"/build-gcc-offload-x86_64-intelmicemul-linux-gnu/
+
+rm -f .have-build .have-install
+if ! test -f .have-configure; then
+  (target=$("$T"/source-gcc/config.guess) &&
+  "$T"/source-gcc/configure \
+    --prefix= \
+    --build=x86_64-intelmicemul-linux-gnu \
+    --host=x86_64-intelmicemul-linux-gnu \
+    --target=x86_64-intelmicemul-linux-gnu \
+    --enable-as-accelerator-for="$target" \
+    --disable-bootstrap \
+    --enable-languages=c,c++,fortran,lto \
+    CC=gcc-4.6 \
+    CXX=g++-4.6 &&
+  touch .have-configure) 2>&1 | tee -a log_build
+fi
+test -f .have-configure
+(make "$@" &&
+touch .have-build) 2>&1 | tee -a log_build
+test -f .have-build
