@@ -3,6 +3,11 @@
 set -e -x
 
 . ./ENV
+./BUILD-nvptx-tools "$@"
+./INSTALL-nvptx-tools "$@"
+./BUILD-gcc-offload-nvptx-none "$@"
+#./TEST-gcc-offload-nvptx-none "$@"
+./INSTALL-gcc-offload-nvptx-none "$@"
 ./BUILD-gcc-offload-x86_64-intelmicemul-linux-gnu "$@"
 #./TEST-gcc-offload-x86_64-intelmicemul-linux-gnu "$@"
 ./INSTALL-gcc-offload-x86_64-intelmicemul-linux-gnu "$@"

@@ -2,16 +2,17 @@
 
 set -e -x
 
-mkdir -p "$T"/build-gcc
-cd "$T"/build-gcc/
+mkdir -p "$T"/build-nvptx-tools
+cd "$T"/build-nvptx-tools/
 
 rm -f .have-build .have-install
 if ! test -f .have-configure; then
-  ("$T"/source-gcc/configure \
-    --prefix= \
-    --enable-languages=all,ada,go \
-    --enable-offload-targets=nvptx-none="$T"/install/offload-nvptx-none,x86_64-intelmicemul-linux-gnu="$T"/install/offload-x86_64-intelmicemul-linux-gnu \
+  ("$T"/source-nvptx-tools/configure \
+    --target=nvptx-none \
+    --prefix="$T"/install/offload-nvptx-none \
     --with-cuda-driver-include=$CUDA/targets/x86_64-linux/include \
+    --with-cuda-runtime-include=$CUDA/targets/x86_64-linux/include \
+    --with-cuda-runtime-lib=$CUDA/targets/x86_64-linux/lib\ -Wl,-rpath,$CUDA/targets/x86_64-linux/lib \
     CC=gcc-4.6 \
     CXX=g++-4.6 &&
   touch .have-configure) 2>&1 | tee -a log_build

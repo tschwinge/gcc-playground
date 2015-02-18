@@ -1,5 +1,16 @@
 #!/bin/bash "source me"
 
+CUDA=/usr/local/cuda-5.5 &&
+case $PATH in
+  $CUDA/bin:*) :;;
+  *) PATH=$CUDA/bin:$PATH;;
+esac &&
+
 T=$(T=$(dirname "$BASH_SOURCE") && cd "$T"/ && test -f ENV && echo "$PWD") &&
 
-export T
+DEJAGNU=$T/build-nvptx-tools/dejagnu.exp &&
+NVPTX_NONE_RUN=$T/install/offload-nvptx-none/bin/nvptx-none-run-single &&
+
+CUDA_CACHE_PATH=/scratch/tschwing/.nv/ComputeCache &&
+
+export CUDA CUDA_CACHE_PATH DEJAGNU NVPTX_NONE_RUN PATH T
