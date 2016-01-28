@@ -1,6 +1,8 @@
 #!/bin/bash "source me"
 
 CUDA=/usr/local/cuda-6.5 &&
+HSA_RUNTIME=$HOME/tmp/source/hsa/HSA-Runtime-Reference-Source/master &&
+HSA_KMT=$HOME/tmp/source/hsa/HSA-Drivers-Linux-AMD/master &&
 case $PATH in
   $CUDA/bin:*) :;;
   *) PATH=$CUDA/bin:$PATH;;
@@ -13,4 +15,4 @@ NVPTX_NONE_RUN=$T/install/offload-nvptx-none/bin/nvptx-none-run-single &&
 
 CUDA_CACHE_PATH=/scratch/tschwing/.nv/ComputeCache &&
 
-export CUDA CUDA_CACHE_PATH DEJAGNU NVPTX_NONE_RUN PATH T
+export CUDA CUDA_CACHE_PATH DEJAGNU HSA_KMT HSA_RUNTIME NVPTX_NONE_RUN PATH T
