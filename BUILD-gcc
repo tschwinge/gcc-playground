@@ -7,11 +7,17 @@ cd "$T"/build-gcc/
 
 rm -f .have-build .have-install
 if ! test -f .have-configure; then
-  ("$T"/source-gcc/configure \
+  (# --with-cuda-driver-lib is specified not for the CUDA Driver Library (which
+  # is found in default search paths) but for the CUDA Runtime Library as used
+  # in a few tests in the libgomp testsuite.  This is less intrusive than
+  # setting LIBRARY_PATH and LD_LIBRARY_PATH environment variables, or adding
+  # support for --with-cuda-runtime-lib.
+  "$T"/source-gcc/configure \
     --prefix= \
     --enable-languages=all,ada,go \
     --enable-offload-targets=nvptx-none="$T"/install/offload-nvptx-none,x86_64-intelmicemul-linux-gnu="$T"/install/offload-x86_64-intelmicemul-linux-gnu \
     --with-cuda-driver-include=$CUDA/targets/x86_64-linux/include \
+    --with-cuda-driver-lib=$CUDA/targets/x86_64-linux/lib\ -Wl,-rpath,$CUDA/targets/x86_64-linux/lib \
     CC=gcc-4.6 \
     CXX=g++-4.6 &&
   touch .have-configure) 2>&1 | tee -a log_build
