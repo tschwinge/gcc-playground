@@ -5,7 +5,7 @@ set -e -x
 cd "$T"/build-gcc/
 
 # Default RUNTESTFLAGS; extendable by RUNTESTFLAGS_.
-RUNTESTFLAGS='--target_board=nvptx-none-run'
+RUNTESTFLAGS='--target_board=nvptx-none-run\{,-mgomp\}'
 # Default target; overridden by any argument not matching -* or *=*.
 default_target=check
 for arg; do
