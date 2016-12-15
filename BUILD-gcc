@@ -22,7 +22,6 @@ if ! test -f .have-configure; then
     --with-cuda-driver-lib=$CUDA/targets/x86_64-linux/lib\ -Wl,-rpath,$CUDA/targets/x86_64-linux/lib \
     --with-hsa-runtime-include=$HSA_RUNTIME/inc \
     --with-hsa-runtime-lib=$HSA_RUNTIME \
-    --with-hsa-kmt-lib=$HSA_KMT/src/libhsakmt/build/lnx64a \
     CC=gcc-4.6 \
     CXX=g++-4.6 \
     $CONFIGURE_ &&
