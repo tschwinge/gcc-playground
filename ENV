@@ -1,10 +1,11 @@
 #!/bin/bash "source me"
 
 CUDA=/usr/local/cuda-6.5 &&
+HSAIL_TOOLS=$HOME/tmp/source/hsa/HSAIL-Tools/master.build &&
 HSA_RUNTIME=$HOME/tmp/source/hsa/HSA-Runtime-Reference-Source/master &&
 case $PATH in
-  $CUDA/bin:*) :;;
-  *) PATH=$CUDA/bin:$PATH;;
+  $CUDA/bin:$HSAIL_TOOLS/HSAILAsm:*) :;;
+  *) PATH=$CUDA/bin:$HSAIL_TOOLS/HSAILAsm:$PATH;;
 esac &&
 
 T=$(T=$(dirname "$BASH_SOURCE") && cd "$T"/ && test -f ENV && echo "$PWD") &&
