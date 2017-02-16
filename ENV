@@ -1,5 +1,11 @@
 #!/bin/bash "source me"
 
+SCB=/scratch/tschwing/sourceryg++-2014.05 &&
+case $PATH in
+  $SCB/bin/cache:$SCB/bin:*) :;;
+  *) PATH=$SCB/bin/cache:$SCB/bin:$PATH;;
+esac &&
+
 T=$(T=$(dirname "$BASH_SOURCE") && cd "$T"/ && test -f ENV && echo "$PWD") &&
 
-export T
+export PATH SCB T
