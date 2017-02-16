@@ -3,6 +3,8 @@
 set -e -x
 
 . ./ENV
+./BUILD-nvptx-tools "$@"
+./INSTALL-nvptx-tools "$@"
 ./BUILD-gcc "$@"
 ./TEST-gcc "$@"
 ./INSTALL-gcc "$@"

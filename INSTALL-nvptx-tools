@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e -x
+
+cd "$T"/build-nvptx-tools/
+
+rm -f .have-install
+(make "$@" install &&
+touch .have-install) 2>&1 | tee -a log_install
+test -f .have-install

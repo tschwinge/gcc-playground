@@ -12,4 +12,4 @@ for arg; do
     *) default_target=;;
   esac
 done
-(make -k "$@" $default_target || :) 2>&1 | tee -a log_test
+(make -k RUNTESTFLAGS='--target_board=nvptx-none-run' "$@" $default_target || :) 2>&1 | tee -a log_test
