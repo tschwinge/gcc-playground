@@ -1,0 +1,5 @@
+#!/bin/bash "source me"
+
+T=$(T=$(dirname "$BASH_SOURCE") && cd "$T"/ && test -f ENV && echo "$PWD") &&
+
+export T

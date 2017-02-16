@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e -x
+
+mkdir -p "$T"/build-gcc
+cd "$T"/build-gcc/
+
+rm -f .have-build .have-install
+if ! test -f .have-configure; then
+  ("$T"/source-gcc/configure \
+    --prefix= \
+    --enable-languages=all,ada,go \
+    CC=gcc-4.6 \
+    CXX=g++-4.6 &&
+  touch .have-configure) 2>&1 | tee -a log_build
+fi
+test -f .have-configure
+(make "$@" &&
+touch .have-build) 2>&1 | tee -a log_build
+test -f .have-build

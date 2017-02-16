@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e -x
+
+cd "$T"/build-gcc/
+
+rm -f .have-install
+(make DESTDIR="$T"/install "$@" install &&
+touch .have-install) 2>&1 | tee -a log_install
+test -f .have-install
