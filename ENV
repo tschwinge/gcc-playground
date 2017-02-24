@@ -1,6 +1,6 @@
 #!/bin/bash "source me"
 
-CUDA=/usr/local/cuda-5.5 &&
+CUDA=/usr/local/cuda-6.5 &&
 SCB=/scratch/tschwing/sourceryg++-2014.05 &&
 case $PATH in
   $CUDA/bin:$SCB/bin/cache:$SCB/bin:*) :;;
@@ -14,8 +14,4 @@ NVPTX_NONE_RUN=$T/install/bin/nvptx-none-run-single &&
 
 CUDA_CACHE_PATH=/scratch/tschwing/.nv/ComputeCache &&
 
-export CUDA CUDA_CACHE_PATH DEJAGNU NVPTX_NONE_RUN PATH SCB T &&
-
-# Guard against rogue processes.  Limiting RSS isn't implemented in the Linux
-# kernel; have to resort to limiting the virtual image size.
-ulimit -v 3145728
+export CUDA CUDA_CACHE_PATH DEJAGNU NVPTX_NONE_RUN PATH SCB T
