@@ -9,7 +9,7 @@ rm -f .have-build .have-install
 if ! test -f .have-configure; then
   ("$T"/source-gcc/configure \
     --prefix= \
-    --enable-languages=all,ada,go \
+    --enable-languages=all \
     --enable-werror \
     --enable-checking=yes \
     CC=gcc-4.6 \
