@@ -11,6 +11,7 @@ if ! test -f .have-configure; then
     --prefix= \
     --enable-languages=all,ada,go \
     --enable-werror \
+    --enable-checking=yes \
     CC=gcc-4.6 \
     CXX=g++-4.6 \
     $CONFIGURE_ &&
