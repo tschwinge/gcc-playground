@@ -12,7 +12,8 @@ if ! test -f .have-configure; then
     --enable-languages=all,ada,go \
     --enable-werror \
     CC=gcc-4.6 \
-    CXX=g++-4.6 &&
+    CXX=g++-4.6 \
+    $CONFIGURE_ &&
   touch .have-configure) 2>&1 | tee -a log_build
 fi
 test -f .have-configure
