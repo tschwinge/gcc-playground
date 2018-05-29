@@ -17,7 +17,8 @@ if ! test -f .have-configure; then
     CXX='g++ -m64 -Wl,-rpath,'$SCB/i686-pc-linux-gnu/lib64 \
     --enable-linker-plugin-flags='CC=gcc\ -m32\ -Wl,-rpath,'$SCB/i686-pc-linux-gnu/lib \
     --enable-linker-plugin-configure-flags=--host=i686-pc-linux-gnu \
-    --with-sysroot= &&
+    --with-sysroot= \
+    $CONFIGURE_ &&
   touch .have-configure) 2>&1 | tee -a log_build
 fi
 test -f .have-configure
