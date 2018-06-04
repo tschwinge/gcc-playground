@@ -31,7 +31,8 @@ if ! test -f .have-configure; then
     --with-build-sysroot="$T"/install/nvptx-none \
     --with-build-time-tools="$T"/install/nvptx-none/bin \
     --disable-sjlj-exceptions \
-    --enable-newlib-io-long-long &&
+    --enable-newlib-io-long-long \
+    $CONFIGURE_ &&
   touch .have-configure) 2>&1 | tee -a log_build
 fi
 test -f .have-configure
