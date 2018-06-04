@@ -22,7 +22,7 @@ if ! test -f .have-configure; then
     --prefix= \
     --enable-languages=c,c++,fortran \
     --enable-werror \
-    --enable-checking=yes,df,fold,rtl \
+    --enable-checking=yes \
     CC='gcc -m64 -Wl,-rpath,'$SCB/i686-pc-linux-gnu/lib64 \
     CXX='g++ -m64 -Wl,-rpath,'$SCB/i686-pc-linux-gnu/lib64 \
     --enable-linker-plugin-flags='CC=gcc\ -m32\ -Wl,-rpath,'$SCB/i686-pc-linux-gnu/lib \
