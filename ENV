@@ -1,6 +1,6 @@
 #!/bin/bash "source me"
 
-CUDA=/usr/local/cuda-5.5 &&
+CUDA=/usr/local/cuda-6.5 &&
 SCB=/scratch/tschwing/sourceryg++-2014.05 &&
 case $PATH in
   $CUDA/bin:$SCB/bin/cache:$SCB/bin:*) :;;
