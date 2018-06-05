@@ -15,7 +15,7 @@ if ! test -f .have-configure; then
   "$T"/source-gcc/configure \
     --prefix= \
     --disable-bootstrap \
-    --enable-languages=c,c++,fortran,lto \
+    --enable-languages=brig,c,c++,fortran,lto \
     --enable-werror \
     --enable-checking=yes \
     --disable-multilib \
