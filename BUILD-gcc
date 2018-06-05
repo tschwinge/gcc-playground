@@ -20,7 +20,8 @@ if ! test -f .have-configure; then
     --with-cuda-driver-include=$CUDA/targets/x86_64-linux/include \
     --with-cuda-driver-lib=$CUDA/targets/x86_64-linux/lib\ -Wl,-rpath,$CUDA/targets/x86_64-linux/lib \
     CC=gcc-4.6 \
-    CXX=g++-4.6 &&
+    CXX=g++-4.6 \
+    $CONFIGURE_ &&
   touch .have-configure) 2>&1 | tee -a log_build
 fi
 test -f .have-configure
