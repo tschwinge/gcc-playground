@@ -14,7 +14,7 @@ if ! test -f .have-configure; then
   # support for --with-cuda-runtime-lib.
   "$T"/source-gcc/configure \
     --prefix= \
-    --enable-languages=all,ada,brig,go \
+    --enable-languages=all \
     --enable-werror \
     --enable-checking=yes \
     --enable-offload-targets=nvptx-none="$T"/install/offload-nvptx-none,x86_64-intelmicemul-linux-gnu="$T"/install/offload-x86_64-intelmicemul-linux-gnu,hsa \
