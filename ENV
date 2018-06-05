@@ -1,6 +1,6 @@
 #!/bin/bash "source me"
 
-CUDA=/usr/local/cuda-5.5 &&
+CUDA=/usr/local/cuda-6.5 &&
 case $PATH in
   $CUDA/bin:*) :;;
   *) PATH=$CUDA/bin:$PATH;;
