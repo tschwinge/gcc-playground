@@ -4,12 +4,15 @@ set -e -x
 
 cd "$T"/build-gcc-offload-nvptx-none/
 
+# Default RUNTESTFLAGS; extendable by RUNTESTFLAGS_.
+RUNTESTFLAGS='--target_board=nvptx-none-run'
 # Default target; overridden by any argument not matching -* or *=*.
 default_target=check
 for arg; do
   case $arg in
+    RUNTESTFLAGS_=*) RUNTESTFLAGS="$RUNTESTFLAGS ${arg#RUNTESTFLAGS_=}";;
     -* | *=*) :;;
     *) default_target=;;
   esac
 done
-(make -k RUNTESTFLAGS='--target_board=nvptx-none-run' "$@" $default_target || :) 2>&1 | tee -a log_test
+(make -k RUNTESTFLAGS="$RUNTESTFLAGS" "$@" $default_target || :) 2>&1 | tee -a log_test
