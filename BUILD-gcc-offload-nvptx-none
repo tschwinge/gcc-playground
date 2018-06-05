@@ -24,7 +24,7 @@ if ! test -f .have-configure; then
     --enable-as-accelerator-for="$target" \
     --enable-languages=c,c++,fortran,lto \
     --enable-werror \
-    --enable-checking=yes,df,fold,rtl \
+    --enable-checking=yes \
     CC=gcc-4.6 \
     CXX=g++-4.6 \
     --with-sysroot=/nvptx-none \

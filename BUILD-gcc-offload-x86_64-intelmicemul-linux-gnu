@@ -17,6 +17,7 @@ if ! test -f .have-configure; then
     --disable-bootstrap \
     --enable-languages=c,c++,fortran,lto \
     --enable-werror \
+    --enable-checking=yes \
     CC=gcc-4.6 \
     CXX=g++-4.6 \
     $CONFIGURE_ &&

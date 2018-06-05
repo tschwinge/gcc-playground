@@ -16,6 +16,7 @@ if ! test -f .have-configure; then
     --prefix= \
     --enable-languages=all,ada,go \
     --enable-werror \
+    --enable-checking=yes \
     --enable-offload-targets=nvptx-none="$T"/install/offload-nvptx-none,x86_64-intelmicemul-linux-gnu="$T"/install/offload-x86_64-intelmicemul-linux-gnu \
     --with-cuda-driver-include=$CUDA/targets/x86_64-linux/include \
     --with-cuda-driver-lib=$CUDA/targets/x86_64-linux/lib\ -Wl,-rpath,$CUDA/targets/x86_64-linux/lib \
