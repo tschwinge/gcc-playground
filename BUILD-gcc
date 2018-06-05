@@ -17,6 +17,7 @@ if ! test -f .have-configure; then
     --disable-bootstrap \
     --enable-languages=c,c++,fortran,lto \
     --enable-werror \
+    --enable-checking=yes \
     --disable-multilib \
     --enable-offload-targets=nvptx-none="$T"/install/offload-nvptx-none,x86_64-intelmicemul-linux-gnu="$T"/install/offload-x86_64-intelmicemul-linux-gnu \
     --with-cuda-driver-include=$CUDA/targets/x86_64-linux/include \
