@@ -23,6 +23,7 @@ if ! test -f .have-configure; then
     --target=nvptx-none \
     --enable-as-accelerator-for="$target" \
     --enable-languages=c,c++,fortran,lto \
+    --enable-werror \
     --enable-checking=yes,df,fold,rtl \
     CC=gcc-4.6 \
     CXX=g++-4.6 \

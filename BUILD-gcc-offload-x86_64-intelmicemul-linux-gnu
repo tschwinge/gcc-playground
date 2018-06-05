@@ -16,6 +16,7 @@ if ! test -f .have-configure; then
     --enable-as-accelerator-for="$target" \
     --disable-bootstrap \
     --enable-languages=c,c++,fortran,lto \
+    --enable-werror \
     CC=gcc-4.6 \
     CXX=g++-4.6 &&
   touch .have-configure) 2>&1 | tee -a log_build
