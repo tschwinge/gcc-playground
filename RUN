@@ -6,7 +6,7 @@ set -e -x
 ./BUILD-nvptx-tools "$@"
 ./INSTALL-nvptx-tools "$@"
 ./BUILD-gcc-offload-nvptx-none "$@"
-#./TEST-gcc-offload-nvptx-none "$@"
+./TEST-gcc-offload-nvptx-none "$@" check-gcc RUNTESTFLAGS_='nvptx.exp'
 ./INSTALL-gcc-offload-nvptx-none "$@"
 ./BUILD-gcc-offload-x86_64-intelmicemul-linux-gnu "$@"
 #./TEST-gcc-offload-x86_64-intelmicemul-linux-gnu "$@"
