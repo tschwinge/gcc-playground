@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e -x
+
+cd "$T"/build-gcc-offload-x86_64-intelmicemul-linux-gnu/
+
+# Default target; overridden by any argument not matching -* or *=*.
+default_target=check
+for arg; do
+  case $arg in
+    -* | *=*) :;;
+    *) default_target=;;
+  esac
+done
+(make -k "$@" $default_target || :) 2>&1 | tee -a log_test
