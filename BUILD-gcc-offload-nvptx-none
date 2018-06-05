@@ -1,0 +1,41 @@
+#!/bin/bash
+
+set -e -x
+
+mkdir -p "$T"/build-gcc-offload-nvptx-none
+cd "$T"/build-gcc-offload-nvptx-none/
+
+rm -f .have-build .have-install
+if ! test -f .have-configure; then
+  (rm -f "$T"/source-gcc/newlib &&
+  ln -vs "$T"/source-newlib/newlib "$T"/source-gcc/newlib &&
+  rm -f "$T"/install/offload-nvptx-none/nvptx-none/usr &&
+  mkdir -p "$T"/install/offload-nvptx-none/nvptx-none &&
+  ln -vs . "$T"/install/offload-nvptx-none/nvptx-none/usr &&
+  target=$("$T"/source-gcc/config.guess) &&
+  # Without --disable-sjlj-exceptions:
+  #   checking whether to use setjmp/longjmp exceptions... unknown
+  #   configure: error: unable to detect exception model
+  #   make[1]: *** [configure-target-libgcc] Error 1
+  # What about --enable-newlib-io-long-long?
+  "$T"/source-gcc/configure \
+    --prefix= \
+    --target=nvptx-none \
+    --enable-as-accelerator-for="$target" \
+    --enable-languages=c,c++,fortran,lto \
+    --enable-checking=yes,df,fold,rtl \
+    CC='gcc -m64 -Wl,-rpath,'$SCB/i686-pc-linux-gnu/lib64 \
+    CXX='g++ -m64 -Wl,-rpath,'$SCB/i686-pc-linux-gnu/lib64 \
+    --enable-linker-plugin-flags='CC=gcc\ -m32\ -Wl,-rpath,'$SCB/i686-pc-linux-gnu/lib \
+    --enable-linker-plugin-configure-flags=--host=i686-pc-linux-gnu \
+    --with-sysroot=/nvptx-none \
+    --with-build-sysroot="$T"/install/offload-nvptx-none/nvptx-none \
+    --with-build-time-tools="$T"/install/offload-nvptx-none/nvptx-none/bin \
+    --disable-sjlj-exceptions \
+    --enable-newlib-io-long-long &&
+  touch .have-configure) 2>&1 | tee -a log_build
+fi
+test -f .have-configure
+(make "$@" &&
+touch .have-build) 2>&1 | tee -a log_build
+test -f .have-build

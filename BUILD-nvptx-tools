@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -e -x
+
+mkdir -p "$T"/build-nvptx-tools
+cd "$T"/build-nvptx-tools/
+
+rm -f .have-build .have-install
+if ! test -f .have-configure; then
+  ("$T"/source-nvptx-tools/configure \
+    --target=nvptx-none \
+    --prefix="$T"/install/offload-nvptx-none \
+    --with-cuda-driver-include=$CUDA/targets/x86_64-linux/include \
+    --with-cuda-runtime-include=$CUDA/targets/x86_64-linux/include \
+    --with-cuda-runtime-lib=$CUDA/targets/x86_64-linux/lib\ -Wl,-rpath,$CUDA/targets/x86_64-linux/lib \
+    CC='gcc -m64 -Wl,-rpath,'$SCB/i686-pc-linux-gnu/lib64 \
+    CXX='g++ -m64 -Wl,-rpath,'$SCB/i686-pc-linux-gnu/lib64 &&
+  touch .have-configure) 2>&1 | tee -a log_build
+fi
+test -f .have-configure
+(make "$@" &&
+touch .have-build) 2>&1 | tee -a log_build
+test -f .have-build

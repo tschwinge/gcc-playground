@@ -12,7 +12,8 @@ if ! test -f .have-configure; then
     --disable-bootstrap \
     --enable-languages=c,c++,fortran,lto \
     --disable-multilib \
-    --enable-offload-targets=x86_64-intelmicemul-linux-gnu="$T"/install/offload-x86_64-intelmicemul-linux-gnu \
+    --enable-offload-targets=nvptx-none="$T"/install/offload-nvptx-none,x86_64-intelmicemul-linux-gnu="$T"/install/offload-x86_64-intelmicemul-linux-gnu \
+    --with-cuda-driver-include=$CUDA/targets/x86_64-linux/include \
     CC='gcc -m64 -Wl,-rpath,'$SCB/i686-pc-linux-gnu/lib64 \
     CXX='g++ -m64 -Wl,-rpath,'$SCB/i686-pc-linux-gnu/lib64 \
     --enable-linker-plugin-flags='CC=gcc\ -m32\ -Wl,-rpath,'$SCB/i686-pc-linux-gnu/lib \
