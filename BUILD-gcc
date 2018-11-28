@@ -20,6 +20,7 @@ if ! test -f .have-configure; then
   "$T"/source-gcc/configure \
     --target=nvptx-none \
     --prefix= \
+    --disable-build-format-warnings \
     --enable-languages=c,c++,fortran \
     --enable-werror \
     --enable-checking=yes \
