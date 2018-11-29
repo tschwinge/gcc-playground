@@ -22,6 +22,7 @@ if ! test -f .have-configure; then
     --prefix= \
     --target=nvptx-none \
     --enable-as-accelerator-for="$target" \
+    --disable-build-format-warnings \
     --enable-languages=c,c++,fortran,lto \
     --enable-werror \
     --enable-checking=yes \
