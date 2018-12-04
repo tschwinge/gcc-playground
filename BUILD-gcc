@@ -15,6 +15,7 @@ if ! test -f .have-configure; then
   "$T"/source-gcc/configure \
     --prefix= \
     --disable-bootstrap \
+    --disable-build-format-warnings \
     --enable-languages=c,c++,fortran,lto \
     --enable-werror \
     --enable-checking=yes \
