@@ -15,6 +15,7 @@ if ! test -f .have-configure; then
     --target=x86_64-intelmicemul-linux-gnu \
     --enable-as-accelerator-for="$target" \
     --disable-bootstrap \
+    --disable-build-format-warnings \
     --enable-languages=c,c++,fortran,lto \
     --enable-werror \
     --enable-checking=yes \
